@@ -1,8 +1,13 @@
-# Scale Theme for Movable Type 5
+# Scale for Goodpic.com
 
 ## Author
 
 Taichi Kaminogoya
+Jun Kaneko
+
+## Description
+
+This is a customized theme for Goodpic.com originally from MT Theme Scale by Taichi Kaminogoya.
 
 ## License
 
@@ -20,6 +25,6 @@ This theme released under the GPL.
 
 ## Changes
 
-### 0.1 (May 27, 2011)
+### 1.0 (June 16, 2011)
 
 * Initial release
