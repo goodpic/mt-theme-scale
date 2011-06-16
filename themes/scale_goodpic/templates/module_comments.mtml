@@ -1,0 +1,61 @@
+<mt:IfCommentsActive>
+<section id="comments">
+    <header>
+        <h1><$mt:EntryCommentCount singular="コメント(1)" plural="コメント(#)" none="コメント(0)"$></h1>
+    </header>
+
+    <mt:Comments lastn="$comments_per_page">
+        <mt:CommentsHeader>
+            <mt:If name="entry_template">
+                <mt:If tag="EntryCommentCount" gt="$comments_per_page">
+    <nav>            
+        <ul id="top-comment-nav">
+            <li id="top-prev-comments">
+                <a href="javascript://" id="top-prev-comments-link" title="Older Comments">&lt;&lt;&nbsp;Older Comments</a>
+            </li>
+            <li id="top-num-comments">
+                <span id="top-current-comments"></span>
+            </li>
+            <li id="top-next-comments">
+                <a href="javascript://" id="top-next-comments-link" title="Newer Comments">Newer Comments&nbsp;&gt;&gt;</a>
+            </li>
+        </ul>
+    </nav>
+                </mt:If>
+            </mt:If>
+        </mt:CommentsHeader>
+
+        <$mt:Include module="コメント詳細"$>
+
+        <mt:CommentsFooter>
+            <mtIf name="entry_template">
+                <mt:If tag="EntryCommentCount" gt="$comments_per_page">
+    <nav>
+        <ul id="comment-nav">
+            <li id="prev-comments">
+                <a href="javascript://" id="prev-comments-link" title="Older Comments">&lt;&lt;&nbsp;Older Comments</a>
+            </li>
+            <li id="num-comments">
+                <span id="current-comments"></span>
+            </li>
+            <li id="next-comments">
+                <a href="javascript://" id="next-comments-link" title="Newer Comments">Newer Comments&nbsp;&gt;&gt;</a>
+            </li>
+        </ul>
+    </nav>
+                </mt:If>
+            </mt:If>
+        </mt:CommentsFooter>
+    </mt:Comments>
+
+    <mt:IfCommentsAccepted>
+        <mt:IfRegistrationAllowed>
+    <p id="comment-greeting" class="message">コメントする</p>
+        </mt:IfRegistrationAllowed>
+
+    <mt:Include module="コメント入力フォーム">
+
+    </mt:IfCommentsAccepted>
+
+</section>
+</mt:IfCommentsActive>

@@ -1,0 +1,15 @@
+<mt:IfArchiveTypeEnabled archive_type="Category">
+<mt:TopLevelCategories>
+<mt:SubCatIsFirst>
+  <mt:HasNoParentCategory><ul class="nav-dropdown" id="menu"><li><span class="nav-title">カテゴリ</span></li>
+  <mt:Else><ul>
+  </mt:HasNoParentCategory>
+</mt:SubCatIsFirst>
+<li><a href="<$mt:CategoryArchiveLink$>"<mt:If tag="CategoryDescription"> title="<$mt:CategoryDescription remove_html="1" encode_html="1"$>"</mt:If>><$mt:CategoryLabel$><mt:If tag="CategoryCount"> (<$mt:CategoryCount$>)</mt:If></a>
+<$mt:SubCatsRecurse$>
+</li>
+<mt:SubCatIsLast>
+</ul>
+</mt:SubCatIsLast>
+</mt:TopLevelCategories>
+</mt:IfArchiveTypeEnabled>

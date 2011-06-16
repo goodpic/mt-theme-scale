@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+        <title><$mt:BlogName encode_html="1"$>: ページが見つかりません。</title>
+    </head>
+    <body>
+        <header>
+<$mt:Include module="バナーヘッダー"$>
+            <nav>
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+        </header>
+
+        <div class="content">
+            <section>
+                <h1 class="title page">ページが見つかりません。</h1>
+                <pre><strong><$mt:ErrorMessage$></strong></pre>
+            </section>
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+            var user = <$mt:UserSessionState$>;
+        /* ]]> */
+        </script>
+        <title><$mt:BlogName encode_html="1"$>: 検索結果</title>
+<mt:Ignore>Below Javascript adds ajax search capability</mt:Ignore>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+<mt:IfMoreResults>
+        function getResults(page) {
+            page = parseInt(page);
+            if (timer) window.clearTimeout(timer);
+            var xh = mtGetXmlHttp();
+            if (!xh) return false;
+            var res = results[page];
+            if (!res) return;
+            var url = res['next_url'];
+            if (!url) return;
+        
+            xh.open('GET', url + '&format=js', true);
+            xh.onreadystatechange = function() {
+                if ( xh.readyState == 4 ) {
+                    if ( xh.status && ( xh.status != 200 ) ) {
+                        // error - ignore
+                    } else {
+                        try {
+                            var page_results = eval("(" + xh.responseText + ")");
+                            if ( page_results['error'] == null )
+                                results[page + 1] = page_results['result'];
+                        } catch (e) {
+                        }
+                    }
+                }
+            };
+            xh.send(null);
+        }
+        
+        function swapContent(direction) {
+            if ( direction == undefined ) direction = 1;
+            var page_span = document.getElementById('current-page');
+            if (!page_span) return true;
+            var next_page = direction + parseInt(page_span.innerHTML);
+            var res = results[next_page];
+            if (!res) return true;
+            var content = res['content'];
+            if (!content) return true;
+            var div = document.getElementById('search-results');
+            if (!div) return true;
+            div.innerHTML = content;
+            timer = window.setTimeout("getResults(" + next_page + ")", 1*1000);
+            window.scroll(0, 0);
+            return false;
+        }
+<mt:Else>
+    <mt:IfPreviousResults>
+        function swapContent(direction) {
+            return true;
+        }
+    </mt:IfPreviousResults>
+</mt:IfMoreResults>
+        /* ]]> */
+        </script>
+    </head>
+    <body class="search-result">
+
+        <header>
+            <nav class="global">
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+<$mt:Include module="バナーヘッダー"$>
+        </header>
+
+        <div class="content">
+
+<mt:SetVarTemplate id="search_results" name="search_results">
+    <mt:SearchResults>
+        <mt:SearchResultsHeader>
+            <section>
+                <header>
+                    <h1>
+            <mt:IfStraightSearch>
+                        「<$mt:SearchString$>」と一致するもの
+            </mt:IfStraightSearch>
+            <mt:IfTagSearch>
+                        タグ「<$mt:SearchString$>」が付けられているもの
+            </mt:IfTagSearch>
+                    </h1>
+                </header>
+        </mt:SearchResultsHeader>
+
+        <$mt:Include module="ブログ記事の概要" hide_counts="1"$>
+
+        <mt:SearchResultsFooter>
+                <nav>
+                <mt:IfPreviousResults><a href="<$mt:PreviousLink$>" rel="prev" onclick="return swapContent(-1);">&lt; 前</a>&nbsp;&nbsp;</mt:IfPreviousResults><mt:PagerBlock><mt:IfCurrentPage><$mt:Var name="__value__"$><mt:Else><a href="<$mt:PagerLink$>"><$mt:Var name="__value__"$></a></mt:IfCurrentPage><mt:Unless name="__last__">&nbsp;</mt:Unless></mt:PagerBlock><mt:IfMoreResults>&nbsp;&nbsp;<a href="<$mt:NextLink$>" rel="next" onclick="return swapContent();">次 &gt;</a></mt:IfMoreResults>
+                </nav>
+            </section>
+        </mt:SearchResultsFooter>
+    </mt:SearchResults>
+</mt:SetVarTemplate>
+
+<$mt:Var name="search_results"$>
+
+<mt:NoSearchResults>
+            <section>
+                <header>
+                    <h1>
+    <mt:IfStraightSearch>
+                        「<$mt:SearchString$>」と一致するもの
+    </mt:IfStraightSearch>
+    <mt:IfTagSearch>
+                        タグ「<$mt:SearchString$>」が付けられているもの
+    </mt:IfTagSearch>
+                    </h1>
+                </header>
+                <p>「<$mt:SearchString$>」と一致する結果は見つかりませんでした。</p>
+            </section>
+</mt:NoSearchResults>
+
+<mt:NoSearch>
+            <section>
+                <header>
+                    <h1 id="title page" class="search-results-header">例</h1>
+                </header>
+                <p>すべての単語が順序に関係なく検索されます。フレーズで検索したいときは引用符で囲んでください。</p>
+                <pre><code>"movable type"</code></pre>
+                <p>AND、OR、NOTを入れることで論理検索を行うこともできます。</p>
+                <pre><code>個人 OR 出版</code></pre>
+                <pre><code>個人 NOT 出版</code></pre>
+            </section>
+</mt:NoSearch>
+
+<mt:IfMoreResults>
+<script type="text/javascript">
+<!--
+var div = document.getElementById('search-results');
+var results = {
+    '<$mt:CurrentPage$>': {
+        'content': div.innerHTML,
+        'next_url': '<$mt:NextLink$>'
+    }
+};
+var timer = window.setTimeout("getResults(" + <$mt:CurrentPage$> + ")", 1*1000);
+//-->
+</script>
+</mt:IfMoreResults>
+
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>

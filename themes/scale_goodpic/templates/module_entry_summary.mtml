@@ -1,0 +1,47 @@
+<article id="entry-<$mt:EntryID$>">
+    <header>
+        <time pubdate="pubdate" datetime="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%x %X"$></time>
+        <h1 class="title entry"><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle$></a></h1>
+    </header>
+
+<$mt:EntryBody$>
+
+<mt:Unless name="entry_archive">
+    <mt:If tag="EntryMore">
+    <p class="more-link">続きを読む: <a href="<$mt:EntryPermalink$>#more" rel="bookmark"><$mt:EntryTitle$></a></p>
+    </mt:If>
+<mt:Else>
+    <$mt:EntryMore$>
+</mt:Unless>
+
+    <footer>
+        <dl class="feedback">
+            <dt>ユーザー</dt>
+            <dd>Posted By <mt:If tag="EntryAuthorDisplayName"><address class="entry-author vcard author"><$mt:EntryAuthorLink show_hcard="1"$></address></mt:If></dd>
+<mt:Unless name="entry_archive">
+    <mt:Unless name="hide_counts" eq="1">
+        <mt:IfCommentsActive>
+            <dt>コメント</dt>
+            <dd><a href="<$mt:EntryPermalink$>#comments"><$mt:EntryCommentCount singular="コメント(1)" plural="コメント(#)" none="コメント(0)"$></a></dd>
+        </mt:IfCommentsActive>
+        <mt:IfPingsActive>
+            <dt>トラックバック</dt>
+            <dd><a href="<$mt:EntryPermalink$>#trackbacks"><$mt:EntryTrackbackCount singular="トラックバック(1)" plural="トラックバック(#)" none="トラックバック(0)"$></a></dd>
+        </mt:IfPingsActive>
+    </mt:Unless>
+<mt:Else>
+        </dl>
+        <dl class="tags">
+    <mt:EntryIfTagged>
+            <dt>タグ:</dt>
+            <dd>
+        <mt:EntryTags glue=", "><a rel="tag" href="javascript:void(0)" onclick="location.href='<$mt:TagSearchLink encode_js="1"$>';return false;" class="tag"><$mt:TagName$></a></li></mt:EntryTags>
+            </dd>
+    </mt:EntryIfTagged>
+</mt:Unless>
+        </dl>
+    </footer>
+
+<mt:include module="Social Buttons">
+
+</article>

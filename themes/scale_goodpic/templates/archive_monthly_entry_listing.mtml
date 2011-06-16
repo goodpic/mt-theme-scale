@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+        <title><$mt:ArchiveTitle$>アーカイブ - <$mt:BlogName encode_html="1"$></title>
+<mt:If name="datebased_archive">
+    <mt:ArchivePrevious>
+        <link rel="prev" href="<$mt:ArchiveLink$>" title="<$mt:ArchiveTitle encode_html="1"$>">
+    </mt:ArchivePrevious>
+    <mt:ArchiveNext>
+        <link rel="next" href="<$mt:ArchiveLink$>" title="<$mt:ArchiveTitle encode_html="1"$>">
+    </mt:ArchiveNext>
+</mt:If>
+    </head>
+    <body class="archive-list">
+
+        <header>
+            <nav class="global">
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+<$mt:Include module="バナーヘッダー"$>
+        </header>
+
+        <div class="content">
+
+           <div class="main-content">
+                <section>
+                    <header>
+                        <h1 class="title archive"><$mt:ArchiveTitle$>アーカイブ</h1>
+                    </header>
+<mt:Unless name="datebased_archive"><$mt:Var name="limit" value="auto"$></mt:Unless>
+    <mt:Entries limit="$limit">
+        <$mt:Include module="ブログ記事の概要"$>
+    </mt:Entries>
+
+                    <nav class="content-nav">
+                        <ul class="nav-list">
+    <mt:ArchivePrevious>
+                            <li class="nav-item prev"><a href="<$mt:ArchiveLink$>" class="nav-link">&laquo; <$mt:ArchiveTitle$></a></li>
+    </mt:ArchivePrevious>
+    <mt:ArchiveNext>
+                            <li class="nav-item next"><a href="<$mt:ArchiveLink$>" class="nav-link"><$mt:ArchiveTitle$> &raquo;</a></li>
+    </mt:ArchiveNext>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+
+            <div class="related-content">
+<$mt:WidgetSet name="サイトバー (アーカイブリストページ)"$>
+            </div>
+
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>

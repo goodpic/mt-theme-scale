@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+        <title>コメントのプレビュー - <$mt:BlogName encode_html="1"$></title>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+            var user = <$mt:UserSessionState$>;
+            var is_preview = true;
+        /* ]]> */
+        </script>
+    </head>
+    <body>
+        <header>
+            <nav class="global">
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+<$mt:Include module="バナーヘッダー"$>
+        </header>
+
+        <div class="content">
+
+            <section>
+                <header>
+                    <h1 class="title page">コメントのプレビュー</h1>
+                </header>
+
+                <article id="comment-<$mt:CommentID$>" class="feedback comment<mt:IfCommentParent> comment-reply</mt:IfCommentParent><mt:IfCommenterIsEntryAuthor> entry-author-comment</mt:IfCommenterIsEntryAuthor>">
+                    <header>
+                        <h2><mt:IfCommentParent><$mt:CommentAuthorLink$> から <a href="<mt:CommentParent><$mt:CommentLink$></mt:CommentParent>"><mt:CommentParent><$mt:CommentAuthor$></mt:CommentParent></a> への返信<mt:Else><$mt:CommentAuthorLink$></mt:IfCommentParent></h2>
+                    </header>
+
+<$mt:CommentBody$>
+
+                    <footer>
+                        <dl>
+                            <dt>日付</dt>
+                            <dd><a href="<$mt:CommentLink$>"><abbr class="published" title="<$mt:CommentDate format_name="iso8601"$>"><$mt:CommentDate$></abbr></a></dd>
+                        </dl>
+                    </footer>
+                </article>
+
+                <mt:Include module="コメント入力フォーム">
+
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+        <title><$mt:ArchiveTitle$> <$mt:BlogName encode_html="1"$></title>
+<mt:If name="datebased_archive">
+    <mt:ArchivePrevious>
+        <link rel="prev" href="<$mt:ArchiveLink$>" title="<$mt:ArchiveTitle encode_html="1"$>">
+    </mt:ArchivePrevious>
+    <mt:ArchiveNext>
+        <link rel="next" href="<$mt:ArchiveLink$>" title="<$mt:ArchiveTitle encode_html="1"$>">
+    </mt:ArchiveNext>
+</mt:If>
+
+    </head>
+    <body class="archive-list category">
+
+        <header>
+            <nav class="global">
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+<$mt:Include module="バナーヘッダー"$>
+        </header>
+
+        <div class="content">
+
+                <section>
+                    <header>
+                        <h1 class="title archive"><$mt:ArchiveTitle$></h1>
+                    </header>
+<mt:Unless name="datebased_archive"><$mt:Var name="limit" value="auto"$></mt:Unless>
+
+<MTSetVarBlock name="category"><mt:ParentCategory><$MTCategoryLabel$></mt:ParentCategory></MTSetVarBlock>
+<MTIf name="category" like="写真">
+  <section id="gallery">
+    <MTEntries lastn="9999">
+      <figure> 
+        <a href="<$MTEntryPermalink$>" title="<$MTEntryTitle$>"><$MTEntryExcerpt$></a> 
+        <figcaption>
+          <h3><a href="<$MTEntryPermalink$>" title="<$MTEntryTitle$>"><$MTEntryTitle$></a></h3>
+          <p><abbr class="published" title="<$mt:EntryDate format_name="iso8601"$>"><$mt:EntryDate format="%x %X"$></abbr></p> 
+        </figcaption> 
+      </figure>
+    </MTEntries>
+  </section>
+    
+  <MTElse>
+    <ul>
+    <MTEntries lastn="0">
+      <li><span class="date"><$MTEntryDate format="%y/%m/%d"$></span>
+        <a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a>
+      </li>
+    </MTEntries>
+    </ul>
+  </MTElse>
+</MTIf>
+
+
+
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>

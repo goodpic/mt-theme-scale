@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<$mt:Include module="HTMLヘッダー"$>
+<$mt:SetVar name="comments_per_page" value="50"$>
+<mt:EntryPrevious><link rel="prev bookmark" href="<$mt:EntryPermalink$>" title="<$mt:EntryTitle encode_html="1"$>" /></mt:EntryPrevious>
+<mt:EntryNext><link rel="next bookmark" href="<$mt:EntryPermalink$>" title="<$mt:EntryTitle encode_html="1"$>" /></mt:EntryNext>
+<mt:If tag="EntryCommentCount" gt="$comments_per_page">
+        <script type="text/javascript">
+            MT.entryID = <$mt:EntryID$>;
+            MT.commentsPerPage = <$mt:Var name="comments_per_page"$>;
+            MT.entryCommentCount = <$mt:EntryCommentCount$>;
+            MT.commentIds = [<mt:Comments sort_order="ascend" glue=","><mt:CommentID></mt:Comments>];
+        </script>
+</mt:If>
+        <title><$mt:EntryTitle encode_html="1"$> - <$mt:BlogName encode_html="1"$></title>
+    </head>
+    <body class="individual">
+        <header>
+            <nav class="global">
+<$mt:Include module="ナビゲーション"$>
+            </nav>
+<$mt:Include module="バナーヘッダー"$>
+        </header>
+
+        <div class="content">
+
+            <div class="main-content">
+<$mt:Include module="ブログ記事の概要"$>
+
+<$mt:Include module="コメント"$>
+
+<$mt:Include module="トラックバック"$>
+            </div>
+
+            <div class="related-content">
+<$mt:WidgetSet name="サイトバー (個別アーカイブページ)"$>
+            </div>
+
+        </div>
+
+        <footer>
+<$mt:Include module="バナーフッター"$>
+        </footer>
+    </body>
+</html>
