@@ -68,7 +68,7 @@ elements:
             mappings: 
               individual: 
                 archive_type: Individual
-                file_template: archives2/%y/%m/%-f
+                file_template: archives2/%y/%m/%f
                 preferred: 1
         module: 
           module_banner_footer: 
