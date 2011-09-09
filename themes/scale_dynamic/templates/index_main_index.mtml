@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<$mt:Include module="HTML Head"$>       
+
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<$mt:Link template="index_rsd"$>" />
+        <title><$mt:BlogName encode_html="1"$></title>
+    </head>
+    
+    <body class="main-index">
+        <header>
+            <nav class="global">
+<$mt:Include module="Navigation"$>
+            </nav>
+<$mt:Include module="Banner Header"$>
+        </header>
+
+        <div class="content" data-role="content">
+            <div class="main-content content-primary"">
+
+<mtml tag="mt:IfUserAgent" params='wants="SmartPhone"'>
+  <mt:dynamicmtml>
+	<ul data-role="listview">
+      <mt:Entries>
+	  <li data-role="list-divider"><$mt:EntryDate format="%x %X"$></li>
+	  <li><a href="<$mt:EntryPermalink$>">
+		  <h3><$mt:EntryTitle$></h3>
+          <$mt:EntryExcerpt$>
+		    <p class="ui-li-aside"><$mt:EntryDate format="%l:%M:%S %p"$></p>
+	    </a></li>
+      </mt:Entries>
+    </ul>
+  </mt:dynamicmtml>
+  <mtml tag="mt:else">
+    <mt:Entries>
+      <$mt:Include module="Entry Summary"$>
+    </mt:Entries>
+  <mtml tag="/mt:else">
+<mtml tag="/mt:IfUserAgent">  
+
+
+            </div>
+
+
+<mtml tag="mt:IfUserAgent" params='wants="SmartPhone"'>
+  <mt:dynamicmtml>
+     This is for SmartPhone
+  </mt:dynamicmtml>
+  <mtml tag="mt:else">
+    <div class="related-content">
+<$mt:WidgetSet name="Related Contents (Index)"$>          
+    </div>
+  <mtml tag="/mt:else">
+<mtml tag="/mt:IfUserAgent">
+            
+
+        </div>
+
+        <footer>
+<$mt:Include module="Banner Footer"$>
+        </footer>
+    </body>
+</html>

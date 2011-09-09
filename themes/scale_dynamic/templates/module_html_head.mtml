@@ -1,0 +1,34 @@
+<meta charset="<$mt:PublishCharset$>">
+<meta name="description" content="<$mt:BlogDescription remove_html="1"$>">
+<meta name="generator" content="<$mt:ProductName version="1"$>">
+<link rel="start" href="<$mt:BlogURL$>" title="Home">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<$mt:Link template="index_feed_recent"$>">
+<script type="text/javascript" src="<$mt:Link template="index_javascript"$>"></script>
+
+<$mt:CCLicenseRDF$>
+
+<mtml tag="mt:IfUserAgent" params='wants="SmartPhone"'>
+  <mt:dynamicmtml>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"  href="/jquery-mobile/themes/default/" />  
+<link rel="stylesheet" href="/jquery-mobile/docs/_assets/css/jqm-docs.css" />
+<script src="/jquery-mobile/js/jquery.js"></script>
+<script src="/jquery-mobile/experiments/themeswitcher/jquery.mobile.themeswitcher.js"></script>
+<script src="/jquery-mobile/docs/_assets/js/jqm-docs.js"></script>
+<script src="/jquery-mobile/js/"></script>
+    
+  </mt:dynamicmtml>
+  
+  <mtml tag="mt:else">
+<meta name="viewport" content="width=680">
+<script type="text/javascript" src="<$mt:StaticWebPath$>jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="<$mt:Link template="index_styles"$>" type="text/css">
+<!--[if IE]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  <mtml tag="/mt:else">
+<mtml tag="/mt:IfUserAgent">
+
+
+
