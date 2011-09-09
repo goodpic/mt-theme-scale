@@ -62,6 +62,10 @@ elements:
             label: ギャラリーCSS
             outfile: gallery.css
             rebuild_me: 0
+          m_index_main_index: 
+            label: モバイル メインページ
+            outfile: m/index.html
+            rebuild_me: 1
         individual: 
           archive_entry: 
             label: ブログ記事
@@ -70,6 +74,13 @@ elements:
                 archive_type: Individual
                 file_template: archives2/%y/%m/%f
                 preferred: 1
+          m_archive_entry: 
+            label: モバイル ブログ記事
+            mappings: 
+              individual: 
+                archive_type: Individual
+                file_template: m/archives2/%y/%m/%f
+                preferred: 0
         module: 
           module_banner_footer: 
             label: バナーフッター
